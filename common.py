@@ -40,4 +40,7 @@ class FlightData(db.Model, Base):
     url = db.Column(db.String)
     user_id = db.Column(Integer, db.ForeignKey("user.id"))
     user = relationship("User", back_populates='flights')
+    
+db.create_all()
+
 
