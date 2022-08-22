@@ -1,6 +1,7 @@
 from flight_search import FlightSearch
 from datetime import datetime, timedelta
 from flask import render_template, redirect, request, flash
+from markupsafe import Markup
 from flask_bootstrap import Bootstrap
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, LoginManager, login_required, current_user, logout_user
