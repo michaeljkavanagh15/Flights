@@ -1,0 +1,48 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Account Home{% endblock %}
+
+{% block content %}
+{% include "header.html" %}
+
+
+<div class="jumbotron search-title">
+    <h1>Welcome, {{ current_user.email }}!</h1>
+</div>
+
+<div class="container-fluid find-deals">
+    {% if current_user.flights == [] %}
+    <h3>You have no saved flights - start your search!</h3>
+    {% endif %}
+    <a href="{{ url_for('search') }}" class="btn btn-lg btn-primary">Find Deals</a>
+            {% with messages = get_flashed_messages() %}
+            {% if messages: %}
+                {% for message in messages: %}
+                    <p class="success">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+     {% if current_user.flights != [] %}
+
+
+
+<div class="container-fluid row ms-auto flight-box">
+    <h2 class="heading">Your Saved Flights:</h2>
+
+        {% for flight in current_user.flights %}
+    <div class=" flights col-lg-6">
+        <p> Flight to {{ flight.to_city }} - {{ flight.to_iata_code }} from {{ flight.from_city }} - {{ flight.from_iata_code }} for <span class="price">${{flight.price}}</span></p>
+        <p> from {{flight.from_date}} to {{flight.to_date}}</p>
+        <a href="{{flight.url}}" class="btn flight-btn btn-lg btn-success" target="_blank">Go To Flight</a><a href="{{url_for('delete_entry', flight_id=flight.id) }}"
+                                                                                class="btn flight-btn btn-lg btn-danger">Delete
+        Entry</a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% include "footer.html" %}
+{% endblock %}
+
+
+
+

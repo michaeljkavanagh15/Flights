@@ -1,0 +1,25 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content  %}
+{% include "header.html" %}
+<section id="title">
+
+    <div class="jumbotron title-header">
+        <h1>Login to continue your journey!</h1>
+    </div>
+    <div class="container-fluid login-form">
+        {% with messages = get_flashed_messages() %}
+    {% if messages: %}
+        {% for message in messages: %}
+            <p class="warning">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+        {{ wtf.quick_form(form, button_map={'submit':'success'}) }}
+    </div>
+</section>
+{% include 'footer.html' %}
+
+{% endblock %}
+

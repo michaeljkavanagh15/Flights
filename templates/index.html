@@ -1,0 +1,64 @@
+{% extends "bootstrap/base.html" %}
+
+
+{% block title %}Flight Deal Finder{% endblock %}
+{% block content %}
+{% include "header.html" %}
+<section id="title">
+
+    <div class="jumbotron title-header">
+        <h1>Welcome to Flight Deals Finder!</h1>
+        <h2>Get Up and Go!</h2>
+    </div>
+
+</section>
+<section id="features">
+    <div class="container px-4 py-5">
+        <h2 class="pb-2 border-bottom">How It Works</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h2>Uses the Powerful API from Tequila</h2>
+                    <p>Searching with their API enables our users to search for the cheapest flight to a location
+                        of their choosing in the next 6 months - for free!</p>
+                    <a href="https://partners.kiwi.com/our-solutions/tequila/" class="btn btn-primary" target="_blank">
+                        Check Them Out
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h2>Robust Encryption</h2>
+                    <p>Your information is stored using SHA-256 encryption. Your secrets are safe with us!
+                        For your convenience, there is no email verification at this time.</p>
+                    <a href="https://en.wikipedia.org/wiki/SHA-2" class="btn btn-primary" target="_blank">
+                        What is SHA 256?
+                    </a>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h2>Simple and easy to use</h2>
+                    <p>To get started, click the Register button to enter in your email and create a password.
+                        From there, start your search by providing your home city, destination city, how long you would
+                        like to stay, and what your max target price is.</p>
+
+                    {% if not current_user.is_authenticated %}
+                    <a href="{{url_for('register') }}" class="btn btn-primary">
+                        Register Now!
+                    </a>
+                    {% else %}
+                    <a href="{{url_for('account_home') }}" class="btn btn-primary">
+                        Get Searching!
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
+{% endblock %}
+
+
+
