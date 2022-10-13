@@ -84,7 +84,7 @@ def account_home():
     return render_template("account/home.html")
 
 
-# Returns the Search page. Performs some checks to make sure the data entered is correect and alerts the user otherwise
+# Returns the Search page. Performs some checks to make sure the data entered is correct and alerts the user otherwise
 # Requires login
 @app.route("/account/search", methods=["GET", "POST"])
 @login_required
@@ -111,7 +111,7 @@ def search():
                 nights_min=min_nights,
                 nights_max=max_nights)
             if results == []:
-                flash("Sorry, there are no flights betweem those locations!")
+                flash("Sorry, there are no flights between those locations!")
                 return redirect("/account/search")
         except IndexError:
             flash("Sorry, there are no flights to that location!")
