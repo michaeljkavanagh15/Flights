@@ -110,6 +110,9 @@ def search():
                 future_date=search_end_date,
                 nights_min=min_nights,
                 nights_max=max_nights)
+            if results == []:
+                flash("Sorry, there are no flights betweem those locations!")
+                return redirect("/account/search")
         except IndexError:
             flash("Sorry, there are no flights to that location!")
             return redirect("/account/search")
